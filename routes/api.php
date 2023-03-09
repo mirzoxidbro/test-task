@@ -1,5 +1,10 @@
 <?php
 
+use App\Http\Controllers\CompanyController;
+use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
+use App\Http\Resources\EmployeeResource;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -14,6 +19,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+
+Route::post('register', [UserController::class, 'register']);
+Route::post('login', [UserController::class, 'login']);
+Route::group(['middleware' => 'auth:sanctum'], static function () {
+    Route::group(['middleware' => ['role:admin|company']], function () {
+        Route::apiResource('company', CompanyController::class);
+        Route::apiResource('employee', EmployeeController::class);
+        Route::get('users', [UserController::class, 'index']);
+        Route::post('me', [UserController::class, 'me']);
+        Route::post('logout', [UserController::class, 'logout']);
+        Route::post('giveRole', [UserController::class, 'giveRole']);
+        Route::get('roles', [RoleController::class, 'index']);
+    });
 });
