@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Employee;
 
 use App\Rules\PassportRule;
+use App\Rules\PhoneNumber;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateRequest extends FormRequest
@@ -28,7 +29,7 @@ class UpdateRequest extends FormRequest
             'lastname' => 'nullable|string',
             'parent_name' => 'nullable|string',
             'position' => 'nullable|string',
-            'phone' => 'nullable|string',
+            'phone' => ['nullable', ['required', new PhoneNumber]],
             'address' => 'nullable|string',
             'company_name' => 'nullable|string'
         ];

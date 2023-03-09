@@ -3,6 +3,7 @@
 namespace App\Http\Requests\Employee;
 
 use App\Rules\PassportRule;
+use App\Rules\PhoneNumber;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreRequest extends FormRequest
@@ -28,7 +29,7 @@ class StoreRequest extends FormRequest
             'lastname' => 'required|string',
             'parent_name' => 'required|string',
             'position' => 'required|string',
-            'phone' => 'required|max:15|regex:/^(998)[0-9]{9}$/',
+            'phone' => ['required', new PhoneNumber],
             'address' => 'required|string',
             'company_name' => 'required|string'
         ];
