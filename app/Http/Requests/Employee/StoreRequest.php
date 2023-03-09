@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Employee;
 
+use App\Rules\PassportRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class StoreRequest extends FormRequest
@@ -22,14 +23,14 @@ class StoreRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'passport' => 'required',
+            'passport' => ['required', new PassportRule],
             'firstname' => 'required',
-            'lastname' => 'required',
-            'parent_name' => 'required',
-            'position' => 'required',
-            'phone' => 'required',
-            'address' => 'required',
-            'company_name' => 'required'
+            'lastname' => 'required|string',
+            'parent_name' => 'required|string',
+            'position' => 'required|string',
+            'phone' => 'required|max:15|regex:/^(998)[0-9]{9}$/',
+            'address' => 'required|string',
+            'company_name' => 'required|string'
         ];
     }
 }

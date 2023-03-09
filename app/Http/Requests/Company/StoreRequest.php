@@ -28,7 +28,7 @@ class StoreRequest extends FormRequest
             'address' => 'required|string',
             'email' => 'required|string',
             'website' => 'required|string',
-            'phone' => 'nullable'
+            'phone' => 'required|max:15|regex:/^(998)[0-9]{9}$/'
         ];
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Employee;
 
+use App\Rules\PassportRule;
 use Illuminate\Foundation\Http\FormRequest;
 
 class UpdateRequest extends FormRequest
@@ -22,14 +23,14 @@ class UpdateRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'passport' => 'nullable',
-            'firstname' => 'nullable',
-            'lastname' => 'nullable',
-            'parent_name' => 'nullable',
-            'position' => 'nullable',
-            'phone' => 'nullable',
-            'address' => 'nullable',
-            'company_name' => 'nullable'
+            'passport' => ['nullable', new PassportRule],
+            'firstname' => 'nullable|string',
+            'lastname' => 'nullable|string',
+            'parent_name' => 'nullable|string',
+            'position' => 'nullable|string',
+            'phone' => 'nullable|string',
+            'address' => 'nullable|string',
+            'company_name' => 'nullable|string'
         ];
     }
 }

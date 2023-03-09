@@ -28,7 +28,7 @@ class UpdateRequest extends FormRequest
             'address' => 'nullable|string',
             'email' => 'nullable|string',
             'website' => 'nullable|string',
-            'phone' => 'nullable'
+            'phone' => 'nullable|max:15|regex:/^(998)[0-9]{9}$/'
         ];
     }
 }
