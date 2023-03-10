@@ -2,10 +2,6 @@
 
 -   [Mirzoxid Adxamjanov](https://github.com/mirzoxidbro)
 
-## API Reference
-
-
-
 ## Proyektni o'rnatish
 
 ```
@@ -23,6 +19,8 @@ php artisan migrate
 ```
 php artisan db:seed
 ```
+## API Reference
+
 
 #### Login for superadmin:
 
